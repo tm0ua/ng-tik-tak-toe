@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
 export class AppComponent {
-  title = 'Tick-Tack-Toe';
+  title = 'Tic Tac Toe';
 }
