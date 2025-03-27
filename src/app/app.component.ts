@@ -9,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.less'
 })
 export class AppComponent {
-  title = 'ng-tik-tak-toe';
+  title = 'Tick-Tack-Toe';
 }
