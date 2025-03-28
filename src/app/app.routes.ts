@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { StartComponent } from './start/start.component';
-import { GameBoardComponent } from './game-board/game-board.component';
 
 export const routes: Routes = [
     { path: 'start', component: StartComponent },
-    { path: 'game-board', component: GameBoardComponent },
+
+    // example: lazy load component.
+    { path: 'game-board', loadComponent: () => import('./game-board/game-board.component').then((m) => m.GameBoardComponent) },
 ];
