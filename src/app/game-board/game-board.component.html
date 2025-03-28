@@ -6,7 +6,7 @@
   @for (row of [1, 2, 3]; track $index) {
     <div class="row">
       @for (col of [1, 2, 3]; track $index) {
-        <button class="square" (click)="onItemClick(elem)" #elem></button>
+        <button id="{{ row.toString() }}:{{ col.toString() }}" class="square" (click)="onItemClick(elem)" #elem></button>
       }
     </div>
   }
