@@ -4,6 +4,11 @@ interface MyTable {
   [key: string]: string;
 }
 
+enum Players {
+  x = 'X',
+  o = 'O',
+}
+
 @Component({
   selector: 'app-game-board',
   standalone: true,
@@ -12,8 +17,9 @@ interface MyTable {
   styleUrl: './game-board.component.less'
 })
 export class GameBoardComponent {
-  public player: string = 'X';
-  public nextPlayer: string = 'O';
+  public gameOver: boolean = false;
+  public player: string = Players.x;
+  public nextPlayer: string = Players.o;
   public winner: string = 'None';
   private myTable: MyTable = {};
 
@@ -40,11 +46,14 @@ export class GameBoardComponent {
   }
 
   public reset() {
+    // clear all the squares.
     let squares: NodeListOf<Element> = document.querySelectorAll('button.square');
     squares.forEach((square) => (square as HTMLButtonElement).innerText = '');
 
-    this.player = 'X';
-    this.nextPlayer = 'O';
+    // init all variables.
+    this.gameOver = false;
+    this.player = Players.x;
+    this.nextPlayer = Players.o;
     this.winner = 'None';
     this.myTable = {};
   }
@@ -55,6 +64,8 @@ export class GameBoardComponent {
       this.myTable['1:1'] !== undefined && this.myTable['1:1'] === this.myTable['1:2'] && this.myTable['1:2'] === this.myTable['1:3']
     ) {
       this.winner = this.myTable['1:1'] + ' wins top row!';
+      this.gameOver = true;
+      return;
     }
 
     // middle row wins.
@@ -62,6 +73,8 @@ export class GameBoardComponent {
       this.myTable['2:1'] !== undefined && this.myTable['2:1'] === this.myTable['2:2'] && this.myTable['2:2'] === this.myTable['2:3']
     ) {
       this.winner = this.myTable['2:1'] + ' wins middle row!';
+      this.gameOver = true;
+      return;
     }
 
     // bottom row wins.
@@ -69,6 +82,8 @@ export class GameBoardComponent {
       this.myTable['3:1'] !== undefined && this.myTable['3:1'] === this.myTable['3:2'] && this.myTable['3:2'] === this.myTable['3:3']
     ) {
       this.winner = this.myTable['3:1'] + ' wins bottom row!';
+      this.gameOver = true;
+      return;
     }
 
     // first column wins.
@@ -76,6 +91,8 @@ export class GameBoardComponent {
       this.myTable['1:1'] !== undefined && this.myTable['1:1'] === this.myTable['2:1'] && this.myTable['2:1'] === this.myTable['3:1']
     ) {
       this.winner = this.myTable['1:1'] + ' wins first column!';
+      this.gameOver = true;
+      return;
     }
 
     // second column wins.
@@ -83,6 +100,8 @@ export class GameBoardComponent {
       this.myTable['1:2'] !== undefined && this.myTable['1:2'] === this.myTable['2:2'] && this.myTable['2:2'] === this.myTable['3:2']
     ) {
       this.winner = this.myTable['1:2'] + ' wins second column!';
+      this.gameOver = true;
+      return;
     }
 
     // third column wins.
@@ -90,6 +109,8 @@ export class GameBoardComponent {
       this.myTable['1:3'] !== undefined && this.myTable['1:3'] === this.myTable['2:3'] && this.myTable['2:3'] === this.myTable['3:3']
     ) {
       this.winner = this.myTable['1:3'] + ' wins third column!';
+      this.gameOver = true;
+      return;
     }
 
     // reverse diagonal wins.
@@ -97,6 +118,8 @@ export class GameBoardComponent {
       this.myTable['1:1'] !== undefined && this.myTable['1:1'] === this.myTable['2:2'] && this.myTable['2:2'] === this.myTable['3:3']
     ) {
       this.winner = this.myTable['1:1'] + ' wins diagonal!';
+      this.gameOver = true;
+      return;
     }
 
     // forward diagonal wins.
@@ -104,6 +127,8 @@ export class GameBoardComponent {
       this.myTable['1:3'] !== undefined && this.myTable['1:3'] === this.myTable['2:2'] && this.myTable['2:2'] === this.myTable['3:1']
     ) {
       this.winner = this.myTable['1:3'] + ' wins diagonal!';
+      this.gameOver = true;
+      return;
     }
   }
 

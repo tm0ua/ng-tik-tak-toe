@@ -1,12 +1,12 @@
 <!-- Tic Tac Toe Game -->
 <div id="statusArea" className="status">Next player: <span>{{ nextPlayer }}</span></div>
 <div id="winnerArea" className="winner">Winner: <span>{{ winner }}</span></div>
-<button (click)="reset()">Reset</button>
+<button (click)="reset()">RESET</button>
 <section>
   @for (row of [1, 2, 3]; track $index) {
     <div class="row">
       @for (col of [1, 2, 3]; track $index) {
-        <button id="{{ row.toString() }}:{{ col.toString() }}" class="square" (click)="onItemClick(elem)" #elem></button>
+        <button id="{{ row.toString() }}:{{ col.toString() }}" class="square" [disabled]="gameOver" (click)="onItemClick(elem)" #elem></button>
       }
     </div>
   }
