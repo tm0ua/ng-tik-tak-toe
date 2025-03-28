@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
 export class AppComponent {
-  title = 'Tic Tac Toe';
+  public title: string = 'Tic Tac Toe';
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.navigate(['/start']);
+  }
 }
