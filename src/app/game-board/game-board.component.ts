@@ -26,7 +26,6 @@ export class GameBoardComponent {
   public onItemClick(element: HTMLButtonElement) {
     // do nothing if square is already used.
     if (element.innerText !== '') {
-      console.log('returned');
       return;
     }
 
