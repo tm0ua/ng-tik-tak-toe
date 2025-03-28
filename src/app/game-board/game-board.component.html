@@ -1,7 +1,7 @@
 <!-- Tic Tac Toe Game -->
 <div id="statusArea" className="status">Next player: <span>{{ nextPlayer }}</span></div>
 <div id="winnerArea" className="winner">Winner: <span>{{ winner }}</span></div>
-<button>Reset</button>
+<button (click)="reset()">Reset</button>
 <section>
   @for (row of [1, 2, 3]; track $index) {
     <div class="row">
